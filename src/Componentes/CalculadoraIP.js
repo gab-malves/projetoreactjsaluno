@@ -67,6 +67,29 @@ const CalculadoraIP = () => {
                     <h2>Resultados:</h2>
                     <p><strong>Endereço de Rede:</strong> {result.networkAddress}</p>
                     <p><strong>Endereço de Broadcast:</strong> {result.broadcastAddress}</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                {Array.from({ length: 10 }).map((_, colIndex) => (
+                                    <th key={colIndex}>Coluna {colIndex + 1}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Array.from({ length: Math.ceil(result.possibleIPs.length / 10) }).map((_, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {Array.from({ length: 10 }).map((_, colIndex) => {
+                                        const ipIndex = rowIndex * 10 + colIndex;
+                                        return (
+                                            <td key={colIndex}>
+                                                {result.possibleIPs[ipIndex] || ''}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                     <p><strong>Endereços IPs Possíveis:</strong></p>
                     <ul>
                         {result.possibleIPs.map((ip, index) => (
