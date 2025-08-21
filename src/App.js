@@ -8,6 +8,7 @@ import MeuEvento from './Componentes/modulo02/MeuEvento';
 import MeuEventoRenderiza from './Componentes/modulo02/MeuEventoRenderiza';
 import RenderizarListas from './Componentes/modulo03/RenderizarListas';
 import RenderizaListasIndice from './Componentes/modulo03/RenderizaListasIndice';
+import RenderizaListaVetorRemove from './Componentes/modulo04/RenderizaListaVetorRemove';
 function App() {
 
   return (
@@ -20,8 +21,9 @@ function App() {
         <MeuEvento />
         <MeuEventoRenderiza />
         <RenderizarListas />
-        */}
         <RenderizaListasIndice />
+        */}
+        <RenderizaListaVetorRemove  />
 
 
 
