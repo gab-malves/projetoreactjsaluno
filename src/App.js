@@ -6,6 +6,8 @@ import CalculadoraIP from './Componentes/modulo01/CalculadoraIP';
 import { MeuTemplate } from './Componentes/modulo02/MeuTemplate';
 import MeuEvento from './Componentes/modulo02/MeuEvento';
 import MeuEventoRenderiza from './Componentes/modulo02/MeuEventoRenderiza';
+import RenderizarListas from './Componentes/modulo03/RenderizarListas';
+import RenderizaListasIndice from './Componentes/modulo03/RenderizaListasIndice';
 function App() {
 
   return (
@@ -15,8 +17,12 @@ function App() {
         {/* Meu primeiro componente  
         <OficinaComponente />
         <MeuTemplate />
-        <MeuEvento />*/}
+        <MeuEvento />
         <MeuEventoRenderiza />
+        <RenderizarListas />
+        */}
+        <RenderizaListasIndice />
+
 
 
     </div>
