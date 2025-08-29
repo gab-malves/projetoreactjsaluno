@@ -9,8 +9,10 @@ import MeuEventoRenderiza from './Componentes/modulo02/MeuEventoRenderiza';
 import RenderizarListas from './Componentes/modulo03/RenderizarListas';
 import RenderizaListasIndice from './Componentes/modulo03/RenderizaListasIndice';
 import RenderizaListaVetorRemove from './Componentes/modulo04/RenderizaListaVetorRemove';
+import RenderizaCondicional from './Componentes/modulo04/RenderizaCondicional';
+import RenderizaCondicionalElse from './Componentes/modulo04/RenderizaCondicionalElse';
+import MinhaProps from './Componentes/modulo04/MinhaProps';
 function App() {
-
   return (
     <div className="App">
         <h1> Projeto para o aluno praticar </h1>
@@ -22,11 +24,12 @@ function App() {
         <MeuEventoRenderiza />
         <RenderizarListas />
         <RenderizaListasIndice />
+         <RenderizaListaVetorRemove  />
+         
+          <RenderizaCondicionalElse />
+                 <RenderizaCondicional />
         */}
-        <RenderizaListaVetorRemove  />
-
-
-
+       <MinhaProps nome="Douglas" />
     </div>
   );
 }
