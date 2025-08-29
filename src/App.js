@@ -14,6 +14,8 @@ import RenderizaCondicionalElse from './Componentes/modulo04/RenderizaCondiciona
 import MinhaProps from './Componentes/modulo04/MinhaProps';
 import CarroDesestruturarPropriedades from './Componentes/modulo05/CarroDesestruturarPropriedades';
 import RecuperarCarros from './Componentes/modulo06/RecuperarCarros';
+import FragmentoReact from './Componentes/modulo07/FragmentoReact';
+import PropFilha from './Componentes/modulo07/PropFilha';
 function App() {
   return (
     <div className="App">
@@ -32,10 +34,12 @@ function App() {
         <MinhaProps nome="Douglas" />
         <CarroDesestruturarPropriedades
           marca="Fiat" cor="Branco" zero="2020"  km="10000" />
+        <RecuperarCarros />
+        <FragmentoReact />
        */}
-
-       <CarroDesestruturarPropriedades
-          marca="Fiat" cor="Branco" zero="2020"  km="10000" />
+        <PropFilha nomeDev="Douglas Rocha Mendes">
+            <h1>Este é o título do PropFilha registrado no App.js</h1>
+        </PropFilha>
     </div>
   );
 }

@@ -1,6 +1,4 @@
-import React from 'react'
 import ApresentaCarro from './ApresentaCarro'
-
 const RecuperarCarros = () => {
     const carros = [
     {id:1,marca:"Fiat",cor:"Preto",zero:true,km:10},
@@ -19,5 +17,4 @@ const RecuperarCarros = () => {
     </div>
   )
 }
-
 export default RecuperarCarros

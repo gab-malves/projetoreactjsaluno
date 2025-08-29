@@ -1,7 +1,4 @@
-import React from 'react'
- 
 const ApresentaCarro = ( carro ) => {
-
   return (
     <ul style={{ textAlign: 'left' }}>
       <li>Marca: {carro.marca}</li>
@@ -11,5 +8,4 @@ const ApresentaCarro = ( carro ) => {
     </ul>
   )
 }
-
 export default ApresentaCarro
