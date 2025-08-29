@@ -12,6 +12,8 @@ import RenderizaListaVetorRemove from './Componentes/modulo04/RenderizaListaVeto
 import RenderizaCondicional from './Componentes/modulo04/RenderizaCondicional';
 import RenderizaCondicionalElse from './Componentes/modulo04/RenderizaCondicionalElse';
 import MinhaProps from './Componentes/modulo04/MinhaProps';
+import CarroDesestruturarPropriedades from './Componentes/modulo05/CarroDesestruturarPropriedades';
+import RecuperarCarros from './Componentes/modulo06/RecuperarCarros';
 function App() {
   return (
     <div className="App">
@@ -24,12 +26,16 @@ function App() {
         <MeuEventoRenderiza />
         <RenderizarListas />
         <RenderizaListasIndice />
-         <RenderizaListaVetorRemove  />
-         
-          <RenderizaCondicionalElse />
-                 <RenderizaCondicional />
-        */}
-       <MinhaProps nome="Douglas" />
+        <RenderizaListaVetorRemove  />
+        <RenderizaCondicionalElse />
+        <RenderizaCondicional />
+        <MinhaProps nome="Douglas" />
+        <CarroDesestruturarPropriedades
+          marca="Fiat" cor="Branco" zero="2020"  km="10000" />
+       */}
+
+       <CarroDesestruturarPropriedades
+          marca="Fiat" cor="Branco" zero="2020"  km="10000" />
     </div>
   );
 }
