@@ -1,5 +1,6 @@
 import React from 'react'
 const CarroDesestruturarPropriedades = (minhaProp) => {
+  // Acionado pelo UnificandoModulos.js
   return (
     <div>
             <h2>Modulo 05 - CarroDesestruturarPropriedades</h2>

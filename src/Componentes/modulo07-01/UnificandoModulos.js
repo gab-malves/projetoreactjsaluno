@@ -98,7 +98,10 @@ const UnificandoModulos = () => {
         <div className="module-section">
           <FragmentoReact />
           <PropFilha nomeDev="Desenvolvedor React">
-            <p>Exemplo de Children Props</p>
+            <p><br></br>Programa PropFilha.js</p>
+            <h1>Exemplo de Propriedade Filha</h1>
+            <h2>Este é o h2 do PropFilha</h2>
+            <h3>Este é o h3 do PropFilha</h3>
           </PropFilha>
         </div>
       )
