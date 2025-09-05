@@ -19,6 +19,8 @@ import CarroDesestruturarPropriedades from '../modulo05/CarroDesestruturarPropri
 import RecuperarCarros from '../modulo06/RecuperarCarros';
 import FragmentoReact from '../modulo07/FragmentoReact';
 import PropFilha from '../modulo07/PropFilha';
+import Calculator from '../modulo08/Calculator';
+import JogoCacaPalavrasPrincipal from '../JogoCacaPalavras/JogoCacaPalavrasPrincipal';
 
 const UnificandoModulos = () => {
   const [activeModule, setActiveModule] = useState('home');
@@ -105,6 +107,14 @@ const UnificandoModulos = () => {
           </PropFilha>
         </div>
       )
+    },
+    funcaoParametro: {
+      title: 'Funcao Parametro',
+      component: Calculator
+    },
+    jogocacapalavras: {
+      title: 'Jogo Caça Palavras',
+      component: JogoCacaPalavrasPrincipal
     }
   };
 
