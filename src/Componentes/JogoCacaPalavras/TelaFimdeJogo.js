@@ -1,6 +1,6 @@
 import React from 'react'
-import "./TelafimdeJogo.css"
-export const TelaFimdeJogo = () => {
+import "./TelaFimdeJogo.css"
+export const TelaFimdeJogo = ({gameOverRetry,pontuacao}) => {
   return (
     <div>
       <h1>Fim do Jogo meu Garotinho </h1>
