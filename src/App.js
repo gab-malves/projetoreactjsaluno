@@ -9,12 +9,6 @@ function App() {
   return (
     <div className="App">
       {/* Comment/uncomment the components below to switch between views */}
-      {/* <UnificandoModulos /> 
-          <Calculator />
-          
-      */}
-      
-     
       <UnificandoModulos /> 
     </div>
   );

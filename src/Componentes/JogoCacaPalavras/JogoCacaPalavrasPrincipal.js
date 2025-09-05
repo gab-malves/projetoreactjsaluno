@@ -3,9 +3,8 @@ import { TelaInicialProjeto } from './TelaInicialProjeto'
 import "./JogoCacaPalavrasPrincipal.css"
 const JogoCacaPalavrasPrincipal = () => {
   return (
-    <div className='.tela_principal'>
-        <h1>Jogo Caça Palavras</h1>
-         <TelaInicialProjeto />
+    <div className="jogo-caca-palavras-container">
+        <TelaInicialProjeto />
     </div>
   )
 }

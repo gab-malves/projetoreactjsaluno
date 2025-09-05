@@ -113,7 +113,7 @@ const UnificandoModulos = () => {
       component: Calculator
     },
     jogocacapalavras: {
-      title: 'Jogo Caça Palavras',
+      title: 'Caça Palavras',
       component: JogoCacaPalavrasPrincipal
     }
   };

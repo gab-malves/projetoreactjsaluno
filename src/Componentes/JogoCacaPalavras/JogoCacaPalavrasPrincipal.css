@@ -1,28 +1,58 @@
+
 html,body{
   height: 100%; /* Garante que o body ocupe toda a altura da janela */
 }
-
-.tela_principal{
-  font-family: Arial, Helvetica, sans-serif; /* Define uma fonte padrão */
-  margin: 0;  /* Remove margens padrão */
-  padding: 0; /* Remove preenchimento padrão */ 
-  background: linear-gradient(180deg,rgba(9,35,175,1) 0%, rgba(0,0,0,1) 100%);  /* Fundo degradê */
-  color: white; /* Cor do texto */
-}
-button{
-  background: blueviolet;
-  color: white;
-  padding: 0 45px ;
-  border: 2px solid white;
-  border-radius:  25px;
-  height: 50px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.2em;
-  cursor: pointer ;
-  transition: .4s;
+.jogo-caca-palavras-container {
+    min-height: 100vh; /* Garante que o container ocupe toda a altura da janela */
+    margin: 0;  /* Remove margens padrão */
+    padding: 0; /* Remove preenchimento padrão */ 
+    background: linear-gradient(180deg,rgba(9,35,175,1) 0%, rgba(0,0,0,1) 100%);  /* Fundo degradê */
+    flex-direction: column; /* Mantém os itens em coluna */
+    align-items: center;/* Centraliza itens horizontalmente */
+    font-family: Arial, Helvetica, sans-serif; /* Define uma fonte padrão */
+    color: white; /* Cor do texto */
 }
 
-button:hover{
-  background-color: #0923af;
+.jogo-caca-palavras-container h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adiciona um efeito de brilho ao título quando passar o mouse */
+.jogo-caca-palavras-container h1:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transition: text-shadow 0.3s ease;
+}
+
+.jogo-caca-palavras-container button {
+    background: blueviolet; /* Cor de fundo do botão */
+    color: white;/* Cor do texto do botão */
+    padding: 0 45px ;/* Espaçamento interno do botão */
+    border: 2px solid white; /* Borda branca */
+    border-radius:  25px; /* Bordas arredondadas */
+    height: 50px; /* Altura do botão */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    font-weight: bold; /* Texto em negrito */
+    font-size: 1.2em; /* Tamanho da fonte */
+    cursor: pointer ; /* Cursor de ponteiro ao passar o mouse */
+    transition: .4s; /* Transição suave para efeitos */
+}
+.jogo-caca-palavras-container button:hover {
+    background-color: #0923af; /* Cor de fundo ao passar o mouse */
 }
