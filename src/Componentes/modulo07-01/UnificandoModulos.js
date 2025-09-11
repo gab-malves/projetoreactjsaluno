@@ -20,7 +20,7 @@ import RecuperarCarros from '../modulo06/RecuperarCarros';
 import FragmentoReact from '../modulo07/FragmentoReact';
 import PropFilha from '../modulo07/PropFilha';
 import Calculator from '../modulo08/Calculator';
-import JogoCacaPalavrasPrincipal from '../JogoCacaPalavras/JogoCacaPalavrasPrincipal';
+import JogoCacaPalavrasPrincipal from '../JogoCacaPalavrasParte01/JogoCacaPalavrasPrincipal';
 
 const UnificandoModulos = () => {
   const [activeModule, setActiveModule] = useState('home');

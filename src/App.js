@@ -1,9 +1,9 @@
 import './App.css';
-import { TelaInicialProjeto } from './Componentes/JogoCacaPalavras/TelaInicialProjeto';
-import UnificandoModulos from './Componentes/modulo07-01/UnificandoModulos';
-import Calculator from './Componentes/modulo08/Calculator';
 
-import {palavrasLista} from "./Componentes/JogoCacaPalavras/Util/Word"
+import UnificandoModulos from './Componentes/modulo07-01/UnificandoModulos';
+
+
+
 // Acionará o UnificandoModulos.js
 function App() {
   return (
