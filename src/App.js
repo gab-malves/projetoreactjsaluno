@@ -1,6 +1,6 @@
 import './App.css';
 
-import UnificandoModulos from './Componentes/modulo07-01/UnificandoModulos';
+import UnificandoModulos from './Componentes/moduloUnificado/UnificandoModulos';
 
 
 
