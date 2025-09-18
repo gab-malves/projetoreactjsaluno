@@ -18,6 +18,17 @@ const JogoCacaPalavrasPrincipal = () => {
 
   const [estagioJogo,setEstagiodoJogo] = useState (estagios[0].nome) // Posção 0 = Início
   const [palavrasJogo] = useState (palavrasLista)
+  
+  const [obterCategoriaDoJogo,setObterCategoriaDoJogo] = useState("");
+  const [letrasDoJogo,setLetrasDoJogo] = useState([]);
+
+  // Variáveis que vão alterar durante o jogo
+  // vão transitar com a TelaJogando.js
+  const [letrasAdivinhadasVetor,setLetrasAdivinhadasVetor] = useState([])
+  const [letrasErradasVetor,setLetrasErradasVetor] = useState([])
+  const [tentativas,setTentativas] = useState(3)
+  const [pontuacao,setPontuacao] = useState(10)
+
   //console.log("Palavras do Jogo: ",palavrasJogo)
 
 // Etapa 02 - Função para carregar a palavra e categoria
@@ -74,7 +85,18 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
         {console.log("Dica estagioJogo: ",estagioJogo)} */}
         {/* Como a posição 0 contem Inicio será apresentado o conteúdo do componente TelaInicial na tela. */}
         {estagioJogo === "Início" && <TelaInicialProjeto iniciarJogo={funcaoIniciarJogo}/>}
-        {estagioJogo === "Jogando" && <TelaJogando processarLetraJogo={processarLetraJogoFunc} />}
+        {/* Antes estava assim:  
+        {estagioJogo === "Jogando" && <TelaJogando processarLetraJogo={processarLetraJogoFunc} />} */}
+        {/* Agora está assim:  */}
+        {estagioJogo === "Jogando" && <TelaJogando 
+          processarLetraJogo={processarLetraJogoFunc}
+          pontuacao = {pontuacao} 
+          obterCategoriaDoJogo = {obterCategoriaDoJogo}
+          tentativas = {tentativas}
+          letrasAdivinhadasVetor = {letrasAdivinhadasVetor}
+          letrasDoJogo = {letrasDoJogo}
+          letrasErradasVetor = {letrasErradasVetor}
+      />}
         {estagioJogo === "Fimjogo" && <TelaFimdeJogo voltarInicio={funcaoVoltarInicioJogo} />}
     </div>
   )
