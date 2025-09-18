@@ -22,6 +22,7 @@ import PropFilha from '../modulo07/PropFilha';
 import Calculator from '../modulo08/Calculator';
 import JogoCacaPalavrasPrincipal from '../JogoCacaPalavrasParte01/JogoCacaPalavrasPrincipal';
 import JogoCacaPalavrasPrincipal02 from '../JogoCacaPalavrasParte02/JogoCacaPalavrasPrincipal';
+import JogoCacaPalavrasPrincipal03 from '../JogoCacaPalavrasParte02/JogoCacaPalavrasPrincipal';
 
 const UnificandoModulos = () => {
   const [activeModule, setActiveModule] = useState('home');
@@ -120,6 +121,10 @@ const UnificandoModulos = () => {
     jogocacapalavras02: {
       title: 'Caça Palavras Etapa 02',
       component: JogoCacaPalavrasPrincipal02  
+    },
+    jogocacapalavras03: {
+      title: 'Caça Palavras Etapa 03',
+      component: JogoCacaPalavrasPrincipal03
     }
   };
 
