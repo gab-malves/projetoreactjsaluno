@@ -89,7 +89,7 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
         {estagioJogo === "Jogando" && <TelaJogando processarLetraJogo={processarLetraJogoFunc} />} */}
         {/* Agora está assim:  */}
         {estagioJogo === "Jogando" && <TelaJogando 
-          processarLetraJogo={processarLetraJogoFunc}
+          processarLetraJogoFunc={processarLetraJogoFunc}
           pontuacao = {pontuacao} 
           obterCategoriaDoJogo = {obterCategoriaDoJogo}
           tentativas = {tentativas}

@@ -1,12 +1,12 @@
 // Relacionados ao formulário. 
 import React, { useRef, useState } from 'react'
 import "./TelaJogando.css"
-export const TelaJogando = ({processarLetraJogo,
+export const TelaJogando = ({processarLetraJogoFunc,
           pontuacao,
           obterCategoriaDoJogo,
           tentativas,
                   letrasAdivinhadasVetor,
-                  letrastoJogo ,
+                  letrasDoJogo ,
                          letrasErradasVetor
 
 }) => {
@@ -15,7 +15,7 @@ export const TelaJogando = ({processarLetraJogo,
   const letraDigitadaRef = useRef (null)
   return (
     <div className='css_telajogando'>
-       <h1>Tela Jogando</h1>
+       <h1>Tela Jogando 02</h1>
         <p className="css_pontuacao">
                 <span> Pontuação: {pontuacao} </span>
                 </p>
@@ -30,7 +30,7 @@ export const TelaJogando = ({processarLetraJogo,
                 {/*o método map vai gerar um loop e mostrar múltiplos quadrados brancos.*/}
                 {/* Se a letra tiver sido advinhinhada vou mostrar ela.*/}
                 <div className="css_container_palavra"> 
-                    { letrastoJogo && letrastoJogo.map ((letra,indice) => (
+                    { letrasDoJogo && letrasDoJogo.map ((letra,indice) => (
                         letrasAdivinhadasVetor.includes(letra) 
                     ))} 
                 </div>
@@ -55,7 +55,7 @@ export const TelaJogando = ({processarLetraJogo,
                 { letrasErradasVetor && letrasErradasVetor.map ((letra,indice) => (
                         (<span key={indice}> {letra}, </span> )  ))}
                 </div>
-            <button onClick={processarLetraJogo}>Finalizar Jogo</button>
+            <button onClick={processarLetraJogoFunc}>Finalizar Jogo</button>
     </div>
   )
 }
