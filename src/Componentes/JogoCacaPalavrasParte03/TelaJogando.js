@@ -84,11 +84,11 @@ Esse trecho de código exibe uma palavra do jogo, mostrando as letras já adivin
                 {/* Criar o formulário */}
                  <p> Tente Advinhar uma letra da palavra </p>
                     {/*  */}
-                    <form  onSubmit={handleFuncaoSubmeter} className="css_formulario_letra">
-                        <input type="text" name="Letra" maxLength="1" required 
+                    <form  onSubmit={handleFuncaoSubmeter} className="css_container_letra">
+                        <input className="css_formulario_letra" type="text" name="Letra" maxLength="1" required 
                           onChange={(e) => setLetraDigitada (e.target.value)}
                           value={letraDigitada}
-                          ref = {letraDigitadaRef}/>
+                          ref = {letraDigitadaRef}/><br />
                           <button>
                             Jogar
                           </button>
