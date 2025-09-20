@@ -88,9 +88,69 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
     // Mudar o estágio do jogo para Jogando
     setEstagiodoJogo (estagios[1].nome)
   }
+  // Etapa 02 - Função para processar a letra digitada
+  // Antes estava assim:
+  /*
   const processarLetraJogoFunc = (letraDigitada) =>{
     setEstagiodoJogo (estagios[2].nome)
-  } 
+  }*/
+  // Agora está assim:
+  // Etapa 03 - Lógica para verificar a letra
+  // Função para processar a letra digitada
+  // A função processarLetraJogoFunc é passada como prop para o componente TelaJogando.js
+  // A letra digitada é recebida como argumento letraDigitada
+  // A letra digitada é convertida para minúscula para facilitar a comparação
+  // Verificamos se a letra já foi adivinhada ou errada, se sim, retornamos sem fazer nada
+  // Se a letra estiver na palavra do jogo, adicionamos à lista de letras adivinhadas e aumentamos a pontuação
+  // Se a letra não estiver na palavra, adicionamos à lista de letras erradas e diminuímos as tentativas
+  // Se as tentativas chegarem a zero, mudamos o estágio do jogo para "Fimjogo"
+  const processarLetraJogoFunc = (letraDigitada) =>{
+    console.log("Letra digitada em TelaJogador.js: ",letraDigitada.toLowerCase)
+    if (letraDigitada && letraDigitada.length > 0 ){
+      const letraDigitadaNormalizada =  letraDigitada && letraDigitada.length > 0 &&letraDigitada.toLowerCase();
+      // Verificar se a letra já foi utilizada
+      if (letrasAdivinhadasVetor.includes(letraDigitadaNormalizada) || 
+          letrasErradasVetor.includes(letraDigitadaNormalizada)){
+        // da uma chance ao usuário não fazendo nada deixando ele continuar sem perder chances
+        return;
+      }
+      if (letrasDoJogo.includes(letraDigitadaNormalizada) ){
+        setLetrasAdivinhadasVetor((valorAtual) => [...valorAtual,letraDigitadaNormalizada])
+        setPontuacao ((ponto) => ponto + 5)
+      }
+      else {
+        // Quando erra reduzimos a tentativa em uma unidade
+        /*
+Used 1 reference
+O trecho ...valorAtual utiliza o operador spread (...) em JavaScript.
+
+O que é o operador spread?
+O operador spread (...) é usado para "espalhar" os elementos de um objeto iterável (como arrays ou objetos) em outro local. 
+Ele é muito comum em React para copiar ou combinar objetos/arrays de forma imutável.
+
+Como funciona no contexto de objetos?
+Se valorAtual for um objeto, ...valorAtual copia todas as propriedades desse objeto para outro objeto. Exemplo:
+
+const valorAtual = { a: 1, b: 2 };
+const novoObjeto = { ...valorAtual, c: 3 };// novoObjeto agora é { a: 1, b: 2, c: 3 }
+
+Por que usar isso em React?
+No React, é comum atualizar o estado de forma imutável. O spread ajuda a criar uma nova cópia do estado antigo, adicionando ou modificando propriedades sem alterar o original.
+
+Possíveis gotchas
+O spread faz uma cópia superficial (shallow copy). Objetos aninhados ainda são referenciados.
+Se houver propriedades duplicadas, a última sobrescreve as anteriores.
+Resumindo
+O uso de ...valorAtual serve para copiar todas as propriedades de valorAtual para outro objeto, facilitando a atualização de estados ou a combinação de objetos de forma limpa e imutável.
+
+        */
+        setLetrasErradasVetor((valorAtual) => [...valorAtual,letraDigitadaNormalizada])
+        setTentativas ((ten) => ten - 1)
+      }
+    }else{
+       setEstagiodoJogo (estagios[2].nome)
+    }
+  }
   const funcaoVoltarInicioJogo = () => {
     setEstagiodoJogo (estagios[0].nome)
   }

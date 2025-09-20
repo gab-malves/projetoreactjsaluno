@@ -14,7 +14,9 @@ export const TelaJogando = ({processarLetraJogoFunc,
   const [letraDigitada,setLetraDigitada] = useState ("");
   const letraDigitadaRef = useRef (null)
 
-  // Função para o formulário etapa 03
+  
+
+  // Etapa 03 - Função para o formulário 
   const handleFuncaoSubmeter = (e) => {
     e.preventDefault(); // Evitar o recarregamento da página
     /*
@@ -72,20 +74,20 @@ O resultado é uma lista de <span>s, cada um representando uma letra (ou espaço
 Resumindo
 Esse trecho de código exibe uma palavra do jogo, mostrando as letras já adivinhadas e escondendo as que ainda faltam, usando React e JSX. Cada letra (ou espaço) é um <span> estilizado, facilitando a visualização para o usuário.
                 */}
-                 <div className="css_container_palavra"> 
+            <div className="css_container_palavra"> 
                 { letrasDoJogo && letrasDoJogo.map ((letra,indice) => (
                     letrasAdivinhadasVetor.includes(letra) 
                       ? 
-                        ((<span key={indice} className="css_letras"> {letra} </span> )) 
+                        ((<span key={indice} className="css_letras">{letra}</span> )) 
                       : 
-                        ((<span key={indice} className="css_quadrado_branco">   </span> )) 
+                        ((<span key={indice} className="css_quadrado_branco">-</span> )) 
                 ))} 
-            </div>
+            </div >
+            <div className="css_container_letra">
+                <p> Tente Advinhar uma letra da palavra </p>
                 {/* Criar o formulário */}
-                 <p> Tente Advinhar uma letra da palavra </p>
-                    {/*  */}
-                    <form  onSubmit={handleFuncaoSubmeter} className="css_container_letra">
-                        <input className="css_formulario_letra" type="text" name="Letra" maxLength="1" required 
+                <form  onSubmit={handleFuncaoSubmeter}>
+                    <input   type="text" name="Letra" maxLength="1" required
                           onChange={(e) => setLetraDigitada (e.target.value)}
                           value={letraDigitada}
                           ref = {letraDigitadaRef}/><br />
@@ -95,6 +97,7 @@ Esse trecho de código exibe uma palavra do jogo, mostrando as letras já adivin
                           {console.log ("Dica letraDigitada",letraDigitada)}
                           {console.log ("Dica letraDigitadaRef", letraDigitadaRef)}
                     </form>
+              </div >
                 <div className="css_letras_erradas">
                 {/* Espaço para as letras incorretas */}
                 <p> Letras já utilizadas</p>

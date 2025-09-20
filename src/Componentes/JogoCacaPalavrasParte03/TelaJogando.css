@@ -17,10 +17,18 @@
 }
 
 .css_container_palavra{
-    margin: 1.5em;
-    padding: 1.5em;
-    border: 20px solid #ecfa00;
-    display: flex;
+    margin: 1.5em;   /* Espaçamento externo ao redor do container */
+    padding: 1.5em;  /* Espaçamento interno dentro do container */
+    border: 20px solid #ecfa00; /* Borda amarela grossa ao redor do container */
+    display: flex;   /* Usa layout flexível para os elementos filhos */
+    justify-content: center; /* Centraliza os elementos filhos horizontalmente */
+    align-items: center;     /* Centraliza os elementos filhos verticalmente */
+    gap: 10px; /* Espaçamento entre os elementos filhos */
+    background-color: #000000; /* Fundo preto para destacar os quadrados */
+    flex-wrap: wrap; /* Permite que os elementos filhos quebrem linha se necessário */
+    max-width: 80%; /* Limita a largura máxima do container */
+    margin-left: auto; /* Centraliza o container horizontalmente */
+    margin-right: auto; /* Centraliza o container horizontalmente */
 }
 .css_quadrado_branco , .css_letras {
     font-size: 70px;
