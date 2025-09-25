@@ -9,6 +9,5 @@ export const TelaFimdeJogo = ({voltarInicio,pontuacao}) => {
       </h2>
       <button onClick={voltarInicio}> Resetar o jogo</button>
     </div>
-
   )
 }

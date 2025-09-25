@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {palavrasLista} from "./Util/Word"
 import { TelaInicialProjeto } from './TelaInicialProjeto'
 import { TelaJogando } from './TelaJogando'
@@ -30,6 +30,24 @@ const JogoCacaPalavrasPrincipal = () => {
   const [tentativas,setTentativas] = useState(3)
   const [pontuacao,setPontuacao] = useState(10)
 
+  // Etapa 03 - Hook useEffect para monitorar as tentativas
+  useEffect (() => {
+    if (tentativas <= 0 ){
+      console.log("Reinicializar variaveis do jogo e ir para o fim do jogo")
+      // Zerar os vetores das letras para uma nova partida
+      reiniciarvariaveisJogo ()
+      // envia para o fim do jogo
+      setEstagiodoJogo (estagios[2].nome)
+    }
+  }, [tentativas])
+
+  const  reiniciarvariaveisJogo = () => {
+    console.log("Reiniciando vetores e as variaveis do jogo")
+    setLetrasAdivinhadasVetor ([])
+    setLetrasErradasVetor ([])
+  }
+
+
   //console.log("Palavras do Jogo: ",palavrasJogo)
 
 // Etapa 02 - Função para carregar a palavra e categoria
@@ -58,7 +76,30 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
     return {categoria,palavraLocal};
   }, [palavrasJogo] ); // Função acionada sempre que o valor desa variável alterar/mudar
 
+  // Etapa 03 - Adicionar useCallback para a função iniciar jogo
+  // A função funcaoIniciarJogo é passada como prop para o componente TelaInicialProjeto.js
+  // Quando o botão iniciar jogo for clicado, a função será executada
+  // A função carrega a palavra e categoria, atualiza as variáveis de estado e muda o estágio do jogo para "Jogando"
+  // Antes estava assim:
+  /*
   const funcaoIniciarJogo = () => {
+    console.log("Iniciar Jogo");
+    setEstagiodoJogo (estagios[1].nome)
+  } */
+  // Agora está assim:
+  // Sem Este useCallback a função seria recriada a cada renderização do componente
+  // Com o useCallback a função só será recriada se a dependência funcaoCarregarPalavraeCategoria mudar
+  // O que não deve acontecer, pois palavrasJogo é inicializado uma vez e nunca muda.
+  // Atenção
+  // Atenção
+  // Atenção
+  // Atenção
+  // Atenção - Sem este useCallback as variáveis de estado não seriam atualizadas corretamente
+  // e o jogo não funcionaria como esperado. 
+  // Um erro percebido será que o vetor de letras erradas não seria atualizado corretamente.
+  // Isso ocorre porque a função seria recriada a cada renderização, 
+  // fazendo com que o estado capturado dentro da função não estivesse sincronizado com o estado atual do componente.
+  const funcaoIniciarJogo = useCallback (() => {
     console.log("Iniciar Jogo");
     console.log("Iniciar Jogo");
     console.log("Iniciar Jogo");
@@ -87,7 +128,30 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
 
     // Mudar o estágio do jogo para Jogando
     setEstagiodoJogo (estagios[1].nome)
-  }
+  }, [funcaoCarregarPalavraeCategoria]);
+
+
+  // Etapa 03 - Hook useEffect para monitorar as letras adivinhadas
+  // Se o número de letras adivinhadas for igual ao número de letras únicas na palavra, o jogador vence
+  // E soma-se 50 pontos à pontuação total e inicia uma nova rodada automaticamente chamando a função funcaoIniciarJogo ()
+  
+useEffect (() => {
+    // UseState letrasDoJogo - contem todas as letras da plavra do jogo
+    const listaLetrasUnicas = [...new Set (letrasDoJogo)]
+    console.log ("Letras unicas: ",listaLetrasUnicas)
+    console.log ("Letras Adivinhadas: ",letrasAdivinhadasVetor)
+    console.log ("Letras unicas (letrasDoJogo): ",letrasDoJogo)
+    // Quando o jogador acerta a palavra soma-se 50.
+    if (listaLetrasUnicas.length === letrasAdivinhadasVetor.length){
+      setPontuacao ((valorAtual) => valorAtual + 50)
+      // Zerar os vetores das letras para uma nova partida
+      reiniciarvariaveisJogo ()
+      // Reinicia o jogo
+      funcaoIniciarJogo();
+    }
+  }, [letrasAdivinhadasVetor,funcaoIniciarJogo,letrasDoJogo])
+
+
   // Etapa 02 - Função para processar a letra digitada
   // Antes estava assim:
   /*
@@ -105,8 +169,15 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
   // Se a letra não estiver na palavra, adicionamos à lista de letras erradas e diminuímos as tentativas
   // Se as tentativas chegarem a zero, mudamos o estágio do jogo para "Fimjogo"
   const processarLetraJogoFunc = (letraDigitada) =>{
-    console.log("Letra digitada em TelaJogador.js: ",letraDigitada.toLowerCase)
+    // Etapa 3 - No botão fim de Jogo, chamamos a função processarLetraJogoFunc sem passar nenhum argumento
+    // Porque temos que verificar se letraDigitada existe e se tem tamanho maior que 0?
+    // Quando chamamos a função processarLetraJogoFunc sem passar nenhum argumento
+    // letraDigitada será undefined. E undefined não tem o método toLowerCase()
+    // Isso causaria um erro. Então, verificamos se letraDigitada existe e se tem tamanho maior que 0
+    // antes de chamar o método toLowerCase()
+    console.log("Letra digitada em JogoCacaPalavrasPrincipal.js: ",letraDigitada)
     if (letraDigitada && letraDigitada.length > 0 ){
+      console.log("Letra digitada em TelaJogador.js: ",letraDigitada.toLowerCase)
       const letraDigitadaNormalizada =  letraDigitada && letraDigitada.length > 0 &&letraDigitada.toLowerCase();
       // Verificar se a letra já foi utilizada
       if (letrasAdivinhadasVetor.includes(letraDigitadaNormalizada) || 
@@ -114,6 +185,10 @@ useCallback serve para evitar que a função seja recriada em toda renderizaçã
         // da uma chance ao usuário não fazendo nada deixando ele continuar sem perder chances
         return;
       }
+      // Se você acertou a letra em acordo com a palavra.
+      // incluirá no vetor de letras adivinhadas
+      // Se acertar a letra ganha 5 pontos
+      // Se errar a letra perde 1 tentativa
       if (letrasDoJogo.includes(letraDigitadaNormalizada) ){
         setLetrasAdivinhadasVetor((valorAtual) => [...valorAtual,letraDigitadaNormalizada])
         setPontuacao ((ponto) => ponto + 5)
@@ -125,7 +200,7 @@ Used 1 reference
 O trecho ...valorAtual utiliza o operador spread (...) em JavaScript.
 
 O que é o operador spread?
-O operador spread (...) é usado para "espalhar" os elementos de um objeto iterável (como arrays ou objetos) em outro local. 
+O operador spread (...) é usado para "espalhar" os elementos de um objeto iterável (como arrays ou objetos) em outro local.
 Ele é muito comum em React para copiar ou combinar objetos/arrays de forma imutável.
 
 Como funciona no contexto de objetos?
@@ -148,10 +223,24 @@ O uso de ...valorAtual serve para copiar todas as propriedades de valorAtual par
         setTentativas ((ten) => ten - 1)
       }
     }else{
-       setEstagiodoJogo (estagios[2].nome)
+      console.log("Ir para fim do jogo. Vou mudar estagio para [2].")
+      setEstagiodoJogo (estagios[2].nome)
+      // o que acontece depois?
+      // é dado refresh na página o conteúdo do Return é carregado novamente
+      // E o estágio do jogo é igual a Fim do Jogo
+      // E o componente TelaFimdeJogo é carregado na tela
+      // E o botão Resetar o jogo é apresentado na tela.
+      // Etapa 03 -  Enviar a pontuação final para o componente TelaFimdeJogo
+      // Eu preciso enviar a pontuação final para o componente TelaFimdeJogo
+      
     }
   }
   const funcaoVoltarInicioJogo = () => {
+    console.log("Voltar para o início do jogo - funcaoVoltarInicioJogo");
+    // Etapa 03 - Antes de realmente reiniciar o jogo, vamos recolocar os valores iniciais nas variáveis.
+    setTentativas (15)
+    setPontuacao (0)
+    // Etapa 01 - Voltar para o início do jogo
     setEstagiodoJogo (estagios[0].nome)
   }
   
@@ -168,7 +257,7 @@ O uso de ...valorAtual serve para copiar todas as propriedades de valorAtual par
     <div className="jogo-caca-palavras-container">
 
 
-  return (
+
         {/* Mostrar o estágio do jogo 
         {console.log("Dica estagioJogo: ",estagioJogo)} */}
         {/* Como a posição 0 contem Inicio será apresentado o conteúdo do componente TelaInicial na tela. */}
@@ -185,11 +274,11 @@ O uso de ...valorAtual serve para copiar todas as propriedades de valorAtual par
           letrasDoJogo = {letrasDoJogo}
           letrasErradasVetor = {letrasErradasVetor}
       />}
+        {/*Etapa 02 */}
+        {/*{estagioJogo === "Fimjogo" && <TelaFimdeJogo voltarInicio={funcaoVoltarInicioJogo} />} */}
+        {/*Etapa 03 */}
+        {estagioJogo === "Fimjogo" && <TelaFimdeJogo voltarInicio={funcaoVoltarInicioJogo} pontuacao={pontuacao} />}
 
- 
-
-
-        {estagioJogo === "Fimjogo" && <TelaFimdeJogo voltarInicio={funcaoVoltarInicioJogo} />}
     </div>
   )
 }
